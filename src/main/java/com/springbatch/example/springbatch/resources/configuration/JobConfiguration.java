@@ -48,10 +48,13 @@ public class JobConfiguration {
     @Bean
     public FlatFileItemReader<User> itemReader(@Value("${input}") Resource resource) {
 
+        System.out.println("Resource000000:" + resource.getFilename());
+
         FlatFileItemReader<User> flatFileItemReader = new FlatFileItemReader<>();
 
         flatFileItemReader.setResource(resource);
         flatFileItemReader.setName("CSV-Reader");
+        flatFileItemReader.setStrict(false);
         flatFileItemReader.setLinesToSkip(1);
         flatFileItemReader.setLineMapper(lineMapper());
 
